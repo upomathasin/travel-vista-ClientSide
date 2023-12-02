@@ -2,8 +2,20 @@ import React, { useContext } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthContextProvider";
+import Swal from "sweetalert2";
 export default function Navbar() {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const signOutUser = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: "Log out successful !",
+          icon: "success",
+        });
+      })
+      .catch((err) => console.log(err.message));
+  };
   return (
     <div className="navbar bg-base-100 shadow-lg">
       <div className="navbar-start">
@@ -34,10 +46,17 @@ export default function Navbar() {
             <li>
               <Link to="/register">Registration</Link>
             </li>
-            <li>
-              {" "}
-              <Link to="/login">Login</Link>
-            </li>
+            {user.length ? (
+              <li>
+                {" "}
+                <Link onClick={signOutUser}>Logout</Link>
+              </li>
+            ) : (
+              <li>
+                {" "}
+                <Link to="/login">Login</Link>
+              </li>
+            )}
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">Travel Vista</a>
@@ -53,10 +72,10 @@ export default function Navbar() {
           <li>
             <Link to="/register">Registration</Link>
           </li>
-          {user ? (
+          {user.length ? (
             <li>
               {" "}
-              <Link to="/">Logout</Link>
+              <Link onClick={signOutUser}>Logout</Link>
             </li>
           ) : (
             <li>
@@ -67,14 +86,18 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="navbar-end">
-        <div className="avatar">
-          <div className="w-10 me-3 rounded-full">
-            <img src={user.photoURL} />
+        {user.length && (
+          <div>
+            <div className="avatar">
+              <div className="w-10 me-3 rounded-full">
+                <img src={user.photoURL} />
+              </div>
+            </div>
+            <h1 className="me-2">
+              Welcome <span className="text-primary">{user.displayName}</span>
+            </h1>
           </div>
-        </div>
-        <h1 className="me-2">
-          Welcome <span className="text-primary">{user.displayName}</span>
-        </h1>
+        )}
       </div>
     </div>
   );

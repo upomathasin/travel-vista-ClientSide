@@ -44,6 +44,7 @@ export default function AuthContextProvider({ children }) {
     createUser: createUser,
     signInUser: signInUser,
     updateUserProfile: updateUserProfile,
+    logOut: logOut,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
