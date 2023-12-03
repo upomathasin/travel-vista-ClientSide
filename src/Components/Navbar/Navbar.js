@@ -4,17 +4,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthContextProvider";
 import Swal from "sweetalert2";
 export default function Navbar() {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
 
-  const signOutUser = () => {
-    logOut()
-      .then(() => {
-        Swal.fire({
-          title: "Log out successful !",
-          icon: "success",
-        });
-      })
-      .catch((err) => console.log(err.message));
+  const handleLogout = () => {
+    logOut();
   };
   return (
     <div className="navbar bg-base-100 shadow-lg">
@@ -46,10 +39,10 @@ export default function Navbar() {
             <li>
               <Link to="/register">Registration</Link>
             </li>
-            {user.length ? (
+            {user ? (
               <li>
                 {" "}
-                <Link onClick={signOutUser}>Logout</Link>
+                <Link onClick={handleLogout}>Logout</Link>
               </li>
             ) : (
               <li>
@@ -72,29 +65,33 @@ export default function Navbar() {
           <li>
             <Link to="/register">Registration</Link>
           </li>
-          {user.length ? (
+          {user && (
             <li>
               {" "}
-              <Link onClick={signOutUser}>Logout</Link>
+              <Link onClick={handleLogout}>Logout</Link>
             </li>
-          ) : (
+          )}
+          {!user && (
             <li>
-              {" "}
               <Link to="/login">Login</Link>
             </li>
           )}
         </ul>
       </div>
       <div className="navbar-end">
-        {user.length && (
-          <div>
+        {user && (
+          <div className="flex justify-center items-center">
             <div className="avatar">
-              <div className="w-10 me-3 rounded-full">
-                <img src={user.photoURL} />
+              <div className="w-12 me-3 rounded-full">
+                <img
+                  src={user && user.photoURL}
+                  className=" object-cover w-full h-full"
+                />
               </div>
             </div>
             <h1 className="me-2">
-              Welcome <span className="text-primary">{user.displayName}</span>
+              Welcome{" "}
+              <span className="text-primary">{user && user.displayName}</span>
             </h1>
           </div>
         )}

@@ -31,25 +31,26 @@ export default function Slider() {
       <div className="keen-slider__slide number-slide1">
         <img
           className=" object-cover w-full h-full"
-          src="https://i.ibb.co/RjxpwfK/young-woman-hiker-taking-photo-with-smartphone-mountains-peak-winter.jpg"
+          src="https://i.ibb.co/BzgnXjB/1124157.jpg
+         "
         />
       </div>
       <div className="keen-slider__slide number-slide1">
         <img
           className=" object-cover w-full h-full"
-          src="https://i.ibb.co/RjxpwfK/young-woman-hiker-taking-photo-with-smartphone-mountains-peak-winter.jpg"
+          src=" https://i.ibb.co/2Fc3tn0/pngegg-5.png"
         />
       </div>
       <div className="keen-slider__slide number-slide1">
         <img
           className=" object-cover w-full h-full"
-          src="https://i.ibb.co/RjxpwfK/young-woman-hiker-taking-photo-with-smartphone-mountains-peak-winter.jpg"
+          src="https://i.ibb.co/h8sTRKb/beautiful-tropical-beach-sea.jpg"
         />
       </div>
       <div className="keen-slider__slide number-slide1">
         <img
           className=" object-cover w-full h-full"
-          src="https://i.ibb.co/RjxpwfK/young-woman-hiker-taking-photo-with-smartphone-mountains-peak-winter.jpg"
+          src="https://i.ibb.co/5xXGxgS/skiers-team-having-fun-snowy-mountains.jpg"
         />
       </div>
       <div className="keen-slider__slide number-slide1">

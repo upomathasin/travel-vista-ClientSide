@@ -8,17 +8,22 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../Firebase/firebase.init";
+import Swal from "sweetalert2";
 const auth = getAuth(app);
 
 export const AuthContext = createContext(null);
 export default function AuthContextProvider({ children }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -31,8 +36,15 @@ export default function AuthContextProvider({ children }) {
     });
   };
 
-  const logOut = () => {
-    return signOut(auth);
+  const logOut = async () => {
+    return signOut(auth)
+      .then(() => {
+        Swal.fire({
+          title: "Log out successful !",
+          icon: "success",
+        });
+      })
+      .catch((err) => console.log(err.message));
   };
 
   const signInUser = (email, password) => {
@@ -41,6 +53,7 @@ export default function AuthContextProvider({ children }) {
 
   const value = {
     user: user,
+    loading: loading,
     createUser: createUser,
     signInUser: signInUser,
     updateUserProfile: updateUserProfile,
