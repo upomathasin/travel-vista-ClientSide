@@ -21,7 +21,7 @@ export default function Slider() {
   });
 
   return (
-    <div ref={sliderRef} className="keen-slider" style={{ height: "300px" }}>
+    <div ref={sliderRef} className="keen-slider" style={{ height: "200px" }}>
       <div className="keen-slider__slide number-slide1">
         <img
           className=" object-cover w-full h-full"

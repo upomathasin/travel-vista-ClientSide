@@ -54,7 +54,7 @@ export default function Navbar() {
         </div>
         <a className="btn btn-ghost text-xl">Travel Vista</a>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-2 py-2">
           <li>
             <Link to="/home">Home</Link>
@@ -77,24 +77,6 @@ export default function Navbar() {
             </li>
           )}
         </ul>
-      </div>
-      <div className="navbar-end">
-        {user && (
-          <div className="flex justify-center items-center">
-            <div className="avatar">
-              <div className="w-12 me-3 rounded-full">
-                <img
-                  src={user && user.photoURL}
-                  className=" object-cover w-full h-full"
-                />
-              </div>
-            </div>
-            <h1 className="me-2">
-              Welcome{" "}
-              <span className="text-primary">{user && user.displayName}</span>
-            </h1>
-          </div>
-        )}
       </div>
     </div>
   );
