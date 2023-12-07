@@ -2,7 +2,7 @@ import React from "react";
 import { MdFlight } from "react-icons/md";
 export default function Footer() {
   return (
-    <footer className="footer footer-center p-10  bg-blue-300 text-white">
+    <footer className="footer footer-center p-10  bg-blue-300 text-slate-800">
       <aside>
         <MdFlight className=" text-3xl" />
 

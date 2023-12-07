@@ -2,8 +2,12 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthContextProvider";
 import Swal from "sweetalert2";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -26,6 +30,7 @@ export default function Login() {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate(location.state?.from);
       })
       .catch((err) => console.log(err));
   };

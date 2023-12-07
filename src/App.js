@@ -6,6 +6,9 @@ import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import AuthContextProvider from "./Providers/AuthContextProvider";
+import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import { ParallaxProvider } from "react-scroll-parallax";
 function App() {
   const router = createBrowserRouter([
     {
@@ -28,13 +31,23 @@ function App() {
           path: "/register",
           element: <Register></Register>,
         },
+        {
+          path: "/placeOrder",
+          element: (
+            <PrivateRoute>
+              <PlaceOrder></PlaceOrder>,
+            </PrivateRoute>
+          ),
+        },
       ],
     },
   ]);
   return (
-    <AuthContextProvider>
-      <RouterProvider router={router} />
-    </AuthContextProvider>
+    <ParallaxProvider>
+      <AuthContextProvider>
+        <RouterProvider router={router} />
+      </AuthContextProvider>
+    </ParallaxProvider>
   );
 }
 
