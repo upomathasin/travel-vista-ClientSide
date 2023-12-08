@@ -25,7 +25,7 @@ export default function Slider() {
       <div className="keen-slider__slide number-slide1">
         <img
           className=" object-cover w-full h-full"
-          src="https://i.ibb.co/RjxpwfK/young-woman-hiker-taking-photo-with-smartphone-mountains-peak-winter.jpg"
+          src="https://i.ibb.co/TmbWjvD/torres-del-paine-national-park-chile-MOSTBEAUTIFUL0921-4dfe4d2e67aa4f28ace7cf7cd21f4c8c.jpg"
         />
       </div>
       <div className="keen-slider__slide number-slide1">
@@ -50,13 +50,13 @@ export default function Slider() {
       <div className="keen-slider__slide number-slide1">
         <img
           className=" object-cover w-full h-full"
-          src="https://i.ibb.co/5xXGxgS/skiers-team-having-fun-snowy-mountains.jpg"
+          src="https://i.ibb.co/b510QXt/2-south-island-new-zealand-getty.jpg"
         />
       </div>
       <div className="keen-slider__slide number-slide1">
         <img
           className=" object-cover w-full h-full"
-          src="https://i.ibb.co/RjxpwfK/young-woman-hiker-taking-photo-with-smartphone-mountains-peak-winter.jpg"
+          src="https://i.ibb.co/dP0mkF0/960x0.webp"
         />
       </div>
     </div>

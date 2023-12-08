@@ -1,20 +1,48 @@
-import React, { useContext } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthContextProvider";
+import Swal from "sweetalert2";
 
 export default function PlaceOrder() {
   const location = useLocation();
-  const { user } = useContext(AuthContext);
-  // console.log(location.state.booking);
-  const { booking } = location.state;
-  const confirmBooking = () => {
+  const { user, myCart } = useContext(AuthContext);
+  const { id } = useParams();
+  const [booking, setBooking] = useState({});
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/placeOrder/${id}`)
+      .then((res) => res.json())
+      .then((data) => setBooking(data));
+  }, []);
+  const confirmBooking = (event) => {
+    event.preventDefault();
+
+    const orderInfo = {
+      title: booking.title,
+      p: booking?.p,
+      src: booking?.src,
+      price: booking?.price,
+      des: booking?.des,
+      name: event.target.name.value,
+      phone: event.target.phone.value,
+    };
+    console.log(orderInfo);
     fetch(`http://localhost:5000/placeOrder/${user.email}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(booking),
+      body: JSON.stringify(orderInfo),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.insertedId) {
+          myCart();
+          Swal.fire({
+            title: "Enjoy!",
+            text: "You booking is confirmed!",
+            icon: "success",
+          });
+        }
+      });
   };
 
   return (
@@ -23,10 +51,10 @@ export default function PlaceOrder() {
         <h1 className=" text-center text-4xl">Place Order</h1>
       </div>
 
-      <div className="grid grid-cols-1    md:grid-cols-2 gap-10 p-10">
+      <div className="grid grid-cols-1    md:grid-cols-2 gap-10 p-10 ">
         <div className="card rounded-none lg:card-side bg-base-100 shadow-xl">
           <figure>
-            <img src={booking.src} alt="Album" className=" h-full" />
+            <img src={booking.src} alt="Album" className="h-full" />
           </figure>
           <div className="card-body ">
             <p className="font-bold text-4xl">${booking.price}</p>
@@ -40,28 +68,25 @@ export default function PlaceOrder() {
         <div className="card lg:card-side bg-base-100 shadow-xl border rounded-none">
           <div className="card-body">
             <h2 className="card-title">Email: {user.email}</h2>
-            <form>
+            <form onSubmit={confirmBooking}>
               <input
                 type="text"
+                name="name"
                 placeholder="Enter your Name"
                 className="w-full p-2 border my-2"
               />
               <br></br>
               <input
+                name="phone"
                 type="text"
                 className="w-full p-2 border my-2"
                 placeholder="Enter your Phone Number"
               />{" "}
               <br></br>
-            </form>
-            <div className="card-actions justify-center  ">
-              <button
-                onClick={confirmBooking}
-                className="btn btn-info text-white  btn-sm"
-              >
+              <button type="submit" className="btn btn-info text-white  btn-sm">
                 Confirm Booking
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

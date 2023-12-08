@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthContextProvider";
-import Swal from "sweetalert2";
+import { GrCart } from "react-icons/gr";
+
 export default function Navbar() {
-  const { user, logOut, loading } = useContext(AuthContext);
+  const { user, logOut, loading, cart } = useContext(AuthContext);
 
   const handleLogout = () => {
     logOut();
@@ -34,11 +35,14 @@ export default function Navbar() {
               <Link to="/home">Home</Link>
             </li>
             <li>
-              <Link to="/">Tour List</Link>
+              <Link to="/tourList">Tour List</Link>
             </li>
-            <li>
-              <Link to="/register">Registration</Link>
-            </li>
+
+            {!user && (
+              <li>
+                <Link to="/register">Registration</Link>
+              </li>
+            )}
             {user ? (
               <li>
                 {" "}
@@ -48,6 +52,14 @@ export default function Navbar() {
               <li>
                 {" "}
                 <Link to="/login">Login</Link>
+              </li>
+            )}
+            {user && (
+              <li>
+                <Link to="/cart">
+                  <GrCart className=" text-xl"></GrCart>
+                  <p className="bg-orange-400">{cart && cart.length}</p>
+                </Link>
               </li>
             )}
           </ul>
@@ -60,11 +72,14 @@ export default function Navbar() {
             <Link to="/home">Home</Link>
           </li>
           <li>
-            <Link to="/">Tour List</Link>
+            <Link to="/tourList">Tour List</Link>
           </li>
-          <li>
-            <Link to="/register">Registration</Link>
-          </li>
+
+          {!user && (
+            <li>
+              <Link to="/register">Registration</Link>
+            </li>
+          )}
           {user && (
             <li>
               {" "}
@@ -74,6 +89,16 @@ export default function Navbar() {
           {!user && (
             <li>
               <Link to="/login">Login</Link>
+            </li>
+          )}
+          {user && (
+            <li>
+              <Link to="/cart">
+                <GrCart className=" text-xl"></GrCart>
+                <p className="bg-orange-400 rounded-md p-1">
+                  {cart && cart.length}
+                </p>
+              </Link>
             </li>
           )}
         </ul>

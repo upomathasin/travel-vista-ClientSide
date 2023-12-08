@@ -9,6 +9,8 @@ import AuthContextProvider from "./Providers/AuthContextProvider";
 import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import { ParallaxProvider } from "react-scroll-parallax";
+import TourList from "./Pages/TourList/TourList";
+import MyCart from "./Pages/MyCart/MyCart";
 function App() {
   const router = createBrowserRouter([
     {
@@ -32,7 +34,27 @@ function App() {
           element: <Register></Register>,
         },
         {
-          path: "/placeOrder",
+          path: "/tourList",
+          element: <TourList></TourList>,
+        },
+        {
+          path: "/placeOrder/:id",
+          element: (
+            <PrivateRoute>
+              <PlaceOrder></PlaceOrder>,
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/cart",
+          element: (
+            <PrivateRoute>
+              <MyCart></MyCart>
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/orders",
           element: (
             <PrivateRoute>
               <PlaceOrder></PlaceOrder>,

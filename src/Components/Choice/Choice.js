@@ -2,10 +2,10 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Choice({ choice }) {
-  const { src, title, p, price, des } = choice;
+  const { _id, src, title, p, price, des } = choice;
   const navigate = useNavigate();
   const handleBooking = () => {
-    navigate("/placeOrder", { state: { booking: choice } });
+    navigate(`/placeOrder/${_id}`);
   };
   return (
     <div className="card  w-96 bg-base-100 shadow-xl rounded-none ">

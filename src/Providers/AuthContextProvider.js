@@ -15,9 +15,21 @@ export const AuthContext = createContext(null);
 export default function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const [cart, setCart] = useState([]);
+
+  function myCart() {
+    if (user) {
+      fetch(`http://localhost:5000/orders/${user.email}`)
+        .then((res) => res.json())
+        .then((data) => setCart(data));
+    }
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
+
       setLoading(false);
     });
 
@@ -52,6 +64,8 @@ export default function AuthContextProvider({ children }) {
   };
 
   const value = {
+    cart: cart,
+    myCart: myCart,
     user: user,
     loading: loading,
     createUser: createUser,
