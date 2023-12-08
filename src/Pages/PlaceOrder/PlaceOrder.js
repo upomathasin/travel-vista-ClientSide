@@ -27,11 +27,14 @@ export default function PlaceOrder() {
       phone: event.target.phone.value,
     };
     console.log(orderInfo);
-    fetch(`http://localhost:5000/placeOrder/${user.email}`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(orderInfo),
-    })
+    fetch(
+      `https://travel-vista-server-side.vercel.app/placeOrder/${user.email}`,
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(orderInfo),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {

@@ -20,7 +20,7 @@ export default function AuthContextProvider({ children }) {
 
   function myCart() {
     if (user) {
-      fetch(`http://localhost:5000/orders/${user.email}`)
+      fetch(`https://travel-vista-server-side.vercel.app/orders/${user.email}`)
         .then((res) => res.json())
         .then((data) => setCart(data));
     }
@@ -29,7 +29,7 @@ export default function AuthContextProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-
+      myCart();
       setLoading(false);
     });
 

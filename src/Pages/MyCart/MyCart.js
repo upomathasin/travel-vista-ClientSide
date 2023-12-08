@@ -8,9 +8,12 @@ export default function MyCart() {
   const sum = cart.reduce((sum, item) => sum + item.price, 0);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/orders/${user.email}/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://travel-vista-server-side.vercel.app/orders/${user.email}/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {
