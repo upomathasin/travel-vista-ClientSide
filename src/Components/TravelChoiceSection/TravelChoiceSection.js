@@ -5,7 +5,7 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 export default function TravelChoiceSection() {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/offers")
+    fetch("https://travel-vista-server-side.vercel.app/offers")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
