@@ -11,6 +11,7 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import { ParallaxProvider } from "react-scroll-parallax";
 import TourList from "./Pages/TourList/TourList";
 import MyCart from "./Pages/MyCart/MyCart";
+import ManageAllOrder from "./Pages/ManageAllOrder/ManageAllOrder";
 function App() {
   const router = createBrowserRouter([
     {
@@ -50,6 +51,14 @@ function App() {
           element: (
             <PrivateRoute>
               <MyCart></MyCart>
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/manageOrder",
+          element: (
+            <PrivateRoute>
+              <ManageAllOrder></ManageAllOrder>
             </PrivateRoute>
           ),
         },

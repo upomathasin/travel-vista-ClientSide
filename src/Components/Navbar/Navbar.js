@@ -64,6 +64,12 @@ export default function Navbar() {
                 </Link>
               </li>
             )}
+
+            {user && (
+              <li>
+                <Link to="/manageOrder">Manage Orders</Link>
+              </li>
+            )}
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">Travel Vista</a>
@@ -101,6 +107,11 @@ export default function Navbar() {
                   {cart && cart.length}
                 </p>
               </Link>
+            </li>
+          )}
+          {user && (
+            <li>
+              <Link to="/manageOrder">Manage Orders</Link>
             </li>
           )}
         </ul>
