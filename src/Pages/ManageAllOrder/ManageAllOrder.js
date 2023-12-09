@@ -43,7 +43,10 @@ export default function ManageAllOrder() {
     <div>
       {cart.length ? (
         <div>
-          <h1 className="text-5xl text-slate-700 text-center my-8"> My Cart</h1>
+          <h1 className="text-5xl text-slate-700 text-center my-8">
+            {" "}
+            Manage My Orders
+          </h1>
 
           <div className="overflow-x-auto min-h-screen p-5 m-5  bg-blue-100">
             <table className="table ">
