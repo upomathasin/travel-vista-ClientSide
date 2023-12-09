@@ -10,9 +10,10 @@ export default function TourList() {
     <div>
       <div
         ref={parallax.ref}
-        className="w-full  min-h-screen"
+        className="hero"
         style={{
           backgroundImage: `url('https://i.ibb.co/Gss8jgj/female-tourists-spread-their-arms-held-their-wings-3518152-20231003092457.jpg')`,
+          backgroundSize: "cover",
         }}
       ></div>
       <TravelChoice></TravelChoice>

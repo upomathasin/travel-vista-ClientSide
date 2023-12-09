@@ -58,7 +58,9 @@ export default function Navbar() {
               <li>
                 <Link to="/cart">
                   <GrCart className=" text-xl"></GrCart>
-                  <p className="bg-orange-400">{cart && cart.length}</p>
+                  <p className="bg-orange-400  w-3 p-1">
+                    {cart && cart.length}
+                  </p>
                 </Link>
               </li>
             )}

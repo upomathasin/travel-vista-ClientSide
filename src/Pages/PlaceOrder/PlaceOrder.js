@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthContextProvider";
 import Swal from "sweetalert2";
 
 export default function PlaceOrder() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { user, myCart } = useContext(AuthContext);
   const { id } = useParams();
   const [booking, setBooking] = useState({});
@@ -27,14 +28,11 @@ export default function PlaceOrder() {
       phone: event.target.phone.value,
     };
     console.log(orderInfo);
-    fetch(
-      `https://travel-vista-server-side.vercel.app/placeOrder/${user.email}`,
-      {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(orderInfo),
-      }
-    )
+    fetch(`http://localhost:5000/placeOrder/${user.email}`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(orderInfo),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
@@ -44,6 +42,8 @@ export default function PlaceOrder() {
             text: "You booking is confirmed!",
             icon: "success",
           });
+
+          navigate("/cart");
         }
       });
   };

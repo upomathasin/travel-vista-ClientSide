@@ -20,7 +20,7 @@ export default function AuthContextProvider({ children }) {
 
   function myCart() {
     if (user) {
-      fetch(`https://travel-vista-server-side.vercel.app/orders/${user.email}`)
+      fetch(`http://localhost:5000/orders/${user.email}`)
         .then((res) => res.json())
         .then((data) => setCart(data));
     }
