@@ -40,6 +40,7 @@ export default function MyCart() {
                   <th>Tour Package Name</th>
                   <th>Name & Phone</th>
                   <th>Price</th>
+                  <th>Status</th>
                   <th></th>
                 </tr>
               </thead>
@@ -70,6 +71,10 @@ export default function MyCart() {
                       </span>
                     </td>
                     <td className="text-success font-bold">{item.price} $</td>
+                    <td>
+                      <button className=" btn-ghost">{item.status}</button>
+                    </td>
+
                     <th>
                       <button
                         onClick={() => handleDelete(item._id)}

@@ -26,6 +26,7 @@ export default function PlaceOrder() {
       des: booking?.des,
       name: event.target.name.value,
       phone: event.target.phone.value,
+      status: "pending",
     };
     console.log(orderInfo);
     fetch(
